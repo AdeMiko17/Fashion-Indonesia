@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOKALPRIDE — Mahakarya & Direktori Fashion Indonesia</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdfbf7',
+                            100: '#f7f2e8',
+                            200: '#eee2cd',
+                            500: '#c25e38', // Terracotta Warm Accent
+                            600: '#a34825',
+                            800: '#4a2312',
+                            900: '#1c1917',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fdfbf7;
+            color: #1c1917;
+        }
+        .font-serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-[#fdfbf7] text-zinc-900 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Bar Notice -->
+    <div class="bg-zinc-900 text-amber-100 text-xs py-2 px-4 text-center font-medium tracking-wide">
+        <span class="inline-block animate-pulse mr-2">✨</span> BANGGA BUATAN INDONESIA — JELAJAHI 100+ BRAND LOKAL TERBAIK NUSANTARA
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-[#fdfbf7]/90 backdrop-blur-md border-b border-zinc-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <span class="w-9 h-9 bg-zinc-900 text-white flex items-center justify-center rounded-xl font-bold font-serif-title text-xl group-hover:bg-brand-500 transition-colors">N</span>
+                    <div class="flex flex-col">
+                        <span class="font-serif-title text-xl font-bold tracking-tight text-zinc-900 leading-none">NUSA<span class="text-brand-500">STYLE</span></span>
+                        <span class="text-[9px] tracking-widest text-zinc-500 uppercase font-semibold">Lokal Pride Hub</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-700">
+                    <a href="#hero" class="hover:text-brand-500 transition-colors">Beranda</a>
+                    <a href="#brands" class="hover:text-brand-500 transition-colors">Direktori Brand</a>
+                    <a href="#wastra" class="hover:text-brand-500 transition-colors">Batik & Wastra</a>
+                    <a href="#lookbook" class="hover:text-brand-500 transition-colors">Lookbook</a>
+                    <a href="#about" class="hover:text-brand-500 transition-colors">Tentang Kami</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-4">
+                    <!-- Wishlist Button -->
+                    <button onclick="toggleWishlistModal()" class="relative p-2.5 rounded-full hover:bg-zinc-100 transition-colors text-zinc-700" title="Simpan Favorit">
+                        <i class="fa-regular fa-heart text-lg"></i>
+                        <span id="wishlistBadge" class="absolute top-1 right-1 bg-brand-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+
+                    <!-- Submit Brand CTA -->
+                    <a href="#submit-brand" class="hidden sm:inline-flex items-center gap-2 bg-zinc-900 text-white px-4 py-2.5 rounded-full text-xs font-semibold hover:bg-brand-500 transition-all shadow-sm">
+                        <i class="fa-solid fa-plus text-[10px]"></i> Daftarkan Brand
+                    </a>
+
+                    <!-- Mobile Menu Trigger -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-zinc-700 hover:bg-zinc-100">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-zinc-200 bg-[#fdfbf7] px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" class="block py-2 text-base font-medium text-zinc-800 border-b border-zinc-100">Beranda</a>
+            <a href="#brands" class="block py-2 text-base font-medium text-zinc-800 border-b border-zinc-100">Direktori Brand</a>
+            <a href="#wastra" class="block py-2 text-base font-medium text-zinc-800 border-b border-zinc-100">Batik & Wastra</a>
+            <a href="#lookbook" class="block py-2 text-base font-medium text-zinc-800 border-b border-zinc-100">Lookbook</a>
+            <a href="#about" class="block py-2 text-base font-medium text-zinc-800">Tentang Kami</a>
+            <a href="#submit-brand" class="block text-center bg-zinc-900 text-white py-2.5 rounded-xl text-sm font-semibold mt-4">
+                Daftarkan Brand Anda
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative py-12 lg:py-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-amber-100/80 border border-amber-300/60 px-3 py-1.5 rounded-full text-xs text-amber-900 font-semibold tracking-wide">
+                            <span class="w-2 h-2 rounded-full bg-brand-500"></span> Revolusi Fashion Lokal Indonesia
+                        </div>
+                        
+                        <h1 class="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-zinc-900">
+                            Wajah Baru <span class="italic text-brand-500 underline decoration-amber-300 decoration-wavy decoration-2">Fashion</span> Nusantara.
+                        </h1>
+                        
+                        <p class="text-zinc-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                            Eksplorasi ekosistem kreasi busana lokal Indonesia. Dari sentuhan autentik Wasra Batik hingga estetika Streetwear modern yang siap mendunia.
+                        </p>
+
+                        <!-- Hero CTA Controls -->
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <a href="#brands" class="bg-brand-500 hover:bg-brand-600 text-white px-7 py-3.5 rounded-full font-semibold text-sm transition-all shadow-lg shadow-brand-500/20 flex items-center gap-2">
+                                Jelajahi Brand <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                            <a href="#wastra" class="bg-white border border-zinc-300 hover:border-zinc-900 text-zinc-800 px-7 py-3.5 rounded-full font-semibold text-sm transition-all shadow-sm">
+                                Tren Batik & Wastra
+                            </a>
+                        </div>
+
+                        <!-- Highlights Banner Counter -->
+                        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-zinc-200/80 max-w-lg">
+                            <div>
+                                <span class="block font-serif-title text-2xl lg:text-3xl font-bold text-zinc-900">120+</span>
+                                <span class="text-xs text-zinc-500 font-medium">Brand Terkurasi</span>
+                            </div>
+                            <div>
+                                <span class="block font-serif-title text-2xl lg:text-3xl font-bold text-zinc-900">38</span>
+                                <span class="text-xs text-zinc-500 font-medium">Provinsi Asal</span>
+                            </div>
+                            <div>
+                                <span class="block font-serif-title text-2xl lg:text-3xl font-bold text-zinc-900">100%</span>
+                                <span class="text-xs text-zinc-500 font-medium">Karya Anak Bangsa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Image Grid Showcase -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <!-- Background Decorative Pattern -->
+                            <div class="absolute -top-6 -right-6 w-72 h-72 bg-amber-200/50 rounded-full blur-3xl -z-10"></div>
+                            <div class="absolute -bottom-6 -left-6 w-72 h-72 bg-brand-500/20 rounded-full blur-3xl -z-10"></div>
+
+                            <!-- Editorial Grid -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-4">
+                                    <div class="relative rounded-2xl overflow-hidden shadow-md group">
+                                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Batik Modern Style" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x800/1c1917/ffffff?text=Modern+Batik'">
+                                        <div class="absolute bottom-3 left-3 right-3 bg-black/60 backdrop-blur-md p-2.5 rounded-xl text-white">
+                                            <p class="text-xs font-semibold">Batik Ethnic</p>
+                                            <p class="text-[10px] text-zinc-300">Sentuhan Tradisional</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-zinc-900 text-white p-6 rounded-2xl space-y-2">
+                                        <i class="fa-solid fa-gem text-amber-400 text-xl"></i>
+                                        <h4 class="font-bold text-sm">Kualitas Global</h4>
+                                        <p class="text-xs text-zinc-400 leading-relaxed">Produk lokal dengan standar pengerjaan ekspor & material sustainable.</p>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4 pt-8">
+                                    <div class="bg-brand-50 text-brand-900 p-5 rounded-2xl border border-brand-200">
+                                        <span class="text-xs font-bold tracking-widest uppercase text-brand-600 block mb-1">Spotlight</span>
+                                        <p class="font-serif-title font-bold text-sm">#BanggaLokal</p>
+                                        <p class="text-xs text-zinc-600 mt-1">Gerakan mendukung karya kreator tanah air.</p>
+                                    </div>
+                                    <div class="relative rounded-2xl overflow-hidden shadow-md group">
+                                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80" alt="Indonesian Streetwear" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x800/27272a/ffffff?text=Local+Streetwear'">
+                                        <div class="absolute bottom-3 left-3 right-3 bg-black/60 backdrop-blur-md p-2.5 rounded-xl text-white">
+                                            <p class="text-xs font-semibold">Streetwear Jakarta</p>
+                                            <p class="text-[10px] text-zinc-300">Gaya Urban Muda</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Directory Section -->
+        <section id="brands" class="py-16 bg-white border-y border-zinc-200/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-brand-500 text-xs font-bold uppercase tracking-wider">Direktori Eksklusif</span>
+                        <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-zinc-900 mt-1">Eksplorasi Brand Lokal</h2>
+                    </div>
+                    <p class="text-zinc-500 text-sm max-w-md">
+                        Temukan deretan brand lokal pilihan terbaik dari berbagai kota di Indonesia sesuai kategori favorit Anda.
+                    </p>
+                </div>
+
+                <!-- Search & Filters Container -->
+                <div class="bg-[#fdfbf7] p-4 sm:p-6 rounded-2xl border border-zinc-200 mb-10 space-y-4">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        
+                        <!-- Search Bar -->
+                        <div class="relative flex-1">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400"></i>
+                            <input type="text" id="searchInput" placeholder="Cari brand (contoh: Sejauh Mata Memandang, Compass, Erigo)..." 
+                                class="w-full pl-11 pr-4 py-3 bg-white border border-zinc-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all">
+                        </div>
+
+                        <!-- Location Select -->
+                        <div class="w-full md:w-56">
+                            <select id="locationFilter" class="w-full py-3 px-4 bg-white border border-zinc-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 text-zinc-700 font-medium">
+                                <option value="all">Semua Kota/Kota Origination</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Bandung">Bandung</option>
+                                <option value="Yogyakarta">Yogyakarta / Solo</option>
+                                <option value="Bali">Bali</option>
+                                <option value="Surabaya">Surabaya</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Category Pills -->
+                    <div class="flex items-center gap-2 overflow-x-auto pb-2 pt-2 hide-scrollbar" id="categoryPills">
+                        <button class="category-btn active bg-zinc-900 text-white px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all" data-category="all">
+                            ✨ Semua Kategori
+                        </button>
+                        <button class="category-btn bg-white border border-zinc-200 text-zinc-700 hover:border-zinc-400 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all" data-category="streetwear">
+                            🧢 Streetwear & Casual
+                        </button>
+                        <button class="category-btn bg-white border border-zinc-200 text-zinc-700 hover:border-zinc-400 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all" data-category="wastra">
+                            👘 Batik & Ethnic Wastra
+                        </button>
+                        <button class="category-btn bg-white border border-zinc-200 text-zinc-700 hover:border-zinc-400 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all" data-category="footwear">
+                            👟 Sepatu & Footwear
+                        </button>
+                        <button class="category-btn bg-white border border-zinc-200 text-zinc-700 hover:border-zinc-400 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all" data-category="sustainable">
+                            🌱 Eco & Sustainable
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Brands Cards Grid -->
+                <div id="brandsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Cards will be populated dynamically by Javascript -->
+                </div>
+
+                <!-- Empty Search State -->
+                <div id="emptyState" class="hidden text-center py-16 bg-zinc-50 rounded-2xl border border-dashed border-zinc-300">
+                    <i class="fa-solid fa-compass text-4xl text-zinc-300 mb-3"></i>
+                    <h3 class="font-bold text-zinc-800 text-base">Brand Tidak Ditemukan</h3>
+                    <p class="text-zinc-500 text-xs mt-1">Coba kata kunci pencarian lain atau ganti filter kategori.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Wastra & Batik Modern Feature Section -->
+        <section id="wastra" class="py-20 bg-[#1c1917] text-white relative overflow-hidden">
+            <!-- Decorative Accent Circle -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="inline-block bg-brand-500/20 text-amber-300 border border-brand-500/30 text-xs font-semibold px-3 py-1 rounded-full">
+                            Warisan Budaya & Inovasi
+                        </span>
+                        <h2 class="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+                            Menghidupkan Kembalinya <span class="italic text-amber-400">Wastra Nusantara</span>
+                        </h2>
+                        <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+                            Batik, Tenun Ikat, dan Songket kini tidak lagi sekadar busana formal. Para perancang muda Indonesia mengombinasikan motif bersejarah dengan siluet modern, streetwear, hingga gaun avant-garde.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-zinc-800/60 border border-zinc-700/50">
+                                <div class="w-10 h-10 rounded-lg bg-brand-500/20 text-amber-400 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                                    01
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-zinc-100">Pewarnaan Alam & Zero Waste</h4>
+                                    <p class="text-xs text-zinc-400 mt-0.5">Brand seperti Sukkhacitta mengedepankan pewarna alami tumbuhan lokal tanpa bahan kimia berbahaya.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-zinc-800/60 border border-zinc-700/50">
+                                <div class="w-10 h-10 rounded-lg bg-brand-500/20 text-amber-400 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                                    02
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-zinc-100">Batik Outer & Casualwear</h4>
+                                    <p class="text-xs text-zinc-400 mt-0.5">Potongan kimono, bomber jacket, dan kemeja santai dengan motif Parang dan Kawung khas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Gallery -->
+                    <div class="lg:col-span-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-4">
+                                <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=600&q=80" alt="Tenun Detail" class="rounded-2xl h-56 w-full object-cover shadow-lg border border-zinc-800" onerror="this.src='https://placehold.co/600x600/3f3f46/ffffff?text=Tenun+Ikat'">
+                                <div class="p-5 rounded-2xl bg-amber-950/40 border border-amber-800/30">
+                                    <p class="text-amber-300 font-serif-title font-bold text-base">"Batik Is The New Casual"</p>
+                                    <p class="text-xs text-zinc-400 mt-1">Dukung pengrajin lokal di Solo, Jogja, Pekalongan, & NTT.</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4 pt-6">
+                                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80" alt="Batik Bag" class="rounded-2xl h-72 w-full object-cover shadow-lg border border-zinc-800" onerror="this.src='https://placehold.co/600x800/27272a/ffffff?text=Handicrafts'">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Lookbook Trend Radar -->
+        <section id="lookbook" class="py-20 bg-[#fdfbf7]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-brand-500 text-xs font-bold uppercase tracking-wider">Inspirasi Gaya</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-zinc-900 mt-1">Lookbook Tren 2026</h2>
+                    <p class="text-zinc-500 text-sm mt-2">
+                        Panduan OOTD (Outfit of the day) menggunakan kombinasi item busana racikan brand lokal terpopuler.
+                    </p>
+                </div>
+
+                <!-- Lookbook Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden border border-zinc-200/80 shadow-sm hover:shadow-md transition-all group">
+                        <div class="relative h-96 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Casual Chic Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x800/d4d4d8/000000?text=Urban+Casual'">
+                            <span class="absolute top-4 left-4 bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Urban Minimalist</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif-title font-bold text-lg text-zinc-900">Monokrom Santai Ibu Kota</h3>
+                            <p class="text-xs text-zinc-500 mt-1">Paduan linen shirt putih & sneakers vulcanized buatan lokal.</p>
+                            <div class="mt-4 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
+                                <span class="font-semibold text-zinc-700">3 Brand Digunakan</span>
+                                <button onclick="showLookbookDetail('Monokrom Santai')" class="text-brand-500 font-bold hover:underline">Lihat Detail →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden border border-zinc-200/80 shadow-sm hover:shadow-md transition-all group">
+                        <div class="relative h-96 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80" alt="Streetwear Edge Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x800/18181b/ffffff?text=Streetwear'">
+                            <span class="absolute top-4 left-4 bg-brand-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Street Culture</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif-title font-bold text-lg text-zinc-900">Bandung Underground Vibe</h3>
+                            <p class="text-xs text-zinc-500 mt-1">Oversized graphic hoodie, cargo pants, dan aksesoris silver.</p>
+                            <div class="mt-4 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
+                                <span class="font-semibold text-zinc-700">2 Brand Digunakan</span>
+                                <button onclick="showLookbookDetail('Bandung Underground')" class="text-brand-500 font-bold hover:underline">Lihat Detail →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden border border-zinc-200/80 shadow-sm hover:shadow-md transition-all group">
+                        <div class="relative h-96 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80" alt="Ethnic Contemporary Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x800/71717a/ffffff?text=Etnik+Contemporary'">
+                            <span class="absolute top-4 left-4 bg-amber-800 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Etnik Modern</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif-title font-bold text-lg text-zinc-900">Nusantara Modern Heritage</h3>
+                            <p class="text-xs text-zinc-500 mt-1">Outerwear Tenun NTT dipadu culottes netral untuk acara semi-formal.</p>
+                            <div class="mt-4 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
+                                <span class="font-semibold text-zinc-700">4 Brand Digunakan</span>
+                                <button onclick="showLookbookDetail('Nusantara Heritage')" class="text-brand-500 font-bold hover:underline">Lihat Detail →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Submission Form Banner -->
+        <section id="submit-brand" class="py-16 bg-zinc-900 text-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-r from-brand-600 to-amber-700 p-8 sm:p-12 rounded-3xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="space-y-3 text-center md:text-left">
+                        <span class="bg-white/20 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-semibold">Pemilik Brand Lokal?</span>
+                        <h3 class="font-serif-title text-2xl sm:text-3xl font-bold">Daftarkan Brand Anda di NusaStyle</h3>
+                        <p class="text-amber-100 text-xs sm:text-sm max-w-lg">
+                            Bantu konsumen menemukan kreasi unik Anda. Gratis pendaftaran tanpa dipungut biaya platform.
+                        </p>
+                    </div>
+
+                    <button onclick="openSubmitModal()" class="bg-white text-zinc-900 hover:bg-zinc-100 font-bold px-6 py-3.5 rounded-full text-sm whitespace-nowrap shadow-md transition-all">
+                        Isi Formulir Brand <i class="fa-solid fa-paper-plane ml-1 text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-white border-t border-zinc-200">
+            <div class="max-w-4xl mx-auto px-4 text-center space-y-4">
+                <span class="text-brand-500 text-xs font-bold uppercase tracking-widest">Misi Kami</span>
+                <h2 class="font-serif-title text-3xl font-bold text-zinc-900">#BanggaBuatanIndonesia</h2>
+                <p class="text-zinc-600 text-sm leading-relaxed">
+                    NusaStyle hadir sebagai wadah informasi dan apresiasi terhadap industri kreatif fashion di Indonesia. Kami percaya bahwa kualitas, desain, dan cerita di balik setiap brand lokal mampu bersaing di kancah internasional sekaligus melestarikan kekayaan budaya Nusantara.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 text-zinc-400 py-12 border-t border-zinc-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-7 h-7 bg-brand-500 text-white flex items-center justify-center rounded-lg font-bold font-serif-title text-base">N</span>
+                    <span class="font-serif-title text-lg font-bold text-white">NUSA<span class="text-brand-500">STYLE</span></span>
+                </div>
+                <p class="text-zinc-500 leading-relaxed">
+                    Direktori dan curated hub brand fashion lokal Indonesia.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-3">Navigasi</h4>
+                <ul class="space-y-2">
+                    <li><a href="#hero" class="hover:text-white transition-colors">Beranda</a></li>
+                    <li><a href="#brands" class="hover:text-white transition-colors">Direktori Brand</a></li>
+                    <li><a href="#wastra" class="hover:text-white transition-colors">Batik & Wastra</a></li>
+                    <li><a href="#lookbook" class="hover:text-white transition-colors">Lookbook</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-3">Kategori</h4>
+                <ul class="space-y-2">
+                    <li><a href="#brands" class="hover:text-white transition-colors">Streetwear</a></li>
+                    <li><a href="#brands" class="hover:text-white transition-colors">Batik Modern</a></li>
+                    <li><a href="#brands" class="hover:text-white transition-colors">Sepatu Lokal</a></li>
+                    <li><a href="#brands" class="hover:text-white transition-colors">Sustainable Fashion</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-white font-bold">Langganan Newsletter</h4>
+                <p class="text-zinc-500">Dapatkan update rilis brand terbaru setiap minggu.</p>
+                <form onsubmit="handleNewsletter(event)" class="flex gap-2">
+                    <input type="email" required placeholder="Email Anda..." class="bg-zinc-900 border border-zinc-800 text-white px-3 py-2 rounded-lg text-xs w-full focus:outline-none focus:border-brand-500">
+                    <button type="submit" class="bg-brand-500 text-white px-3 py-2 rounded-lg font-semibold hover:bg-brand-600 transition-colors">Kirim</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-zinc-900 text-center text-zinc-600">
+            <p>© 2026 NUSASTYLE Lokal Pride Hub. Dibuat dengan ❤️ untuk Fashion Indonesia.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Detail Brand -->
+    <div id="brandModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-fade-in relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeBrandModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-black transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div id="brandModalContent">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Form Submit Brand -->
+    <div id="submitModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 relative">
+            <button onclick="closeSubmitModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-zinc-800">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 class="font-serif-title font-bold text-xl text-zinc-900">Daftarkan Brand Anda</h3>
+            <p class="text-xs text-zinc-500 mt-1 mb-6">Isi data singkat mengenai produk fashion lokal Anda.</p>
+            
+            <form onsubmit="handleBrandSubmit(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-zinc-700 mb-1">Nama Brand</label>
+                    <input type="text" required class="w-full px-3 py-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="Contoh: Tenun Karsa">
+                </div>
+                <div>
+                    <label class="block font-semibold text-zinc-700 mb-1">Kategori Utama</label>
+                    <select class="w-full px-3 py-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                        <option>Streetwear & Casual</option>
+                        <option>Batik & Wastra</option>
+                        <option>Sepatu & Footwear</option>
+                        <option>Eco & Sustainable</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-semibold text-zinc-700 mb-1">Kota Asal</label>
+                    <input type="text" required class="w-full px-3 py-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="Contoh: Bandung">
+                </div>
+                <div>
+                    <label class="block font-semibold text-zinc-700 mb-1">Website / Instagram</label>
+                    <input type="url" required class="w-full px-3 py-2.5 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none" placeholder="https://instagram.com/brandanda">
+                </div>
+                <button type="submit" class="w-full bg-brand-500 text-white font-bold py-3 rounded-xl hover:bg-brand-600 transition-colors mt-2 text-sm">
+                    Kirim Permohonan
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Wishlist / Favorit -->
+    <div id="wishlistModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 relative max-h-[80vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-zinc-200">
+                <h3 class="font-serif-title font-bold text-lg text-zinc-900">Brand Favorit Disimpan</h3>
+                <button onclick="toggleWishlistModal()" class="text-zinc-400 hover:text-zinc-800">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div id="wishlistContainer" class="py-4 space-y-3 overflow-y-auto flex-1">
+                <!-- Items populated via JS -->
+            </div>
+            <div class="pt-3 border-t border-zinc-200 text-right">
+                <button onclick="toggleWishlistModal()" class="bg-zinc-900 text-white text-xs px-5 py-2.5 rounded-xl font-bold">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-zinc-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs z-50 transition-all transform translate-y-20 opacity-0 pointer-events-none">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+        <span id="toastMsg">Pesan toast disini...</span>
+    </div>
+
+    <script>
+        // Brands Data Array
+        const brandsData = [
+            {
+                id: 'sejauh-mata-memandang',
+                name: 'Sejauh Mata Memandang',
+                category: 'sustainable',
+                categoryLabel: 'Sustainable & Wastra',
+                location: 'Jakarta',
+                priceRange: 'Rp 450rb - 2.5jt',
+                rating: 4.9,
+                image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80',
+                description: 'Brand fashion kain tekstil lambat (slow fashion) yang mengangkat motif batik warisan dengan konsep ramah lingkungan & bebas plastik.',
+                popularItem: 'Outer Ayam Jantan & Scarf Batik',
+                link: '#'
+            },
+            {
+                id: 'erigo-official',
+                name: 'Erigo Official',
+                category: 'streetwear',
+                categoryLabel: 'Streetwear & Casual',
+                location: 'Jakarta',
+                priceRange: 'Rp 99rb - 500rb',
+                rating: 4.8,
+                image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80',
+                description: 'Brand apparel lokal fenomenal yang sukses melenggang ke New York Fashion Week dengan outerwear dan graphic tee trendy.',
+                popularItem: 'Sukajan Jacket & T-Shirt Oversized',
+                link: '#'
+            },
+            {
+                id: 'sepatu-compass',
+                name: 'Sepatu Compass',
+                category: 'footwear',
+                categoryLabel: 'Sepatu & Footwear',
+                location: 'Bandung',
+                priceRange: 'Rp 350rb - 1.2jt',
+                rating: 4.9,
+                image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80',
+                description: 'Pionir sepatu kebanggaan Indonesia berbasis vulcanized yang memicu fenomena antrean sneakers lokal.',
+                popularItem: 'Gazelle Vintage & Gazelle Low',
+                link: '#'
+            },
+            {
+                id: 'sukkha-citta',
+                name: 'SukkhaCitta',
+                category: 'sustainable',
+                categoryLabel: 'Eco & Ethically Made',
+                location: 'Yogyakarta',
+                priceRange: 'Rp 800rb - 3.5jt',
+                rating: 5.0,
+                image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=600&q=80',
+                description: 'Brand etis tersertifikasi B-Corp pertama di Indonesia yang memberdayakan perempuan pengrajin batik & tenun desa.',
+                popularItem: 'Kain Natural Dye Kebaya & Dress',
+                link: '#'
+            },
+            {
+                id: 'maternal-disaster',
+                name: 'Maternal Disaster',
+                category: 'streetwear',
+                categoryLabel: 'Underground Streetwear',
+                location: 'Bandung',
+                priceRange: 'Rp 150rb - 600rb',
+                rating: 4.9,
+                image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80',
+                description: 'Ikon streetwear bernuansa dark/gothic underground dari Bandung yang memiliki basis komunitas loyalis yang masif.',
+                popularItem: 'Graphic Hoodie & Canvas Jacket',
+                link: '#'
+            },
+            {
+                id: 'cottonink',
+                name: 'Cottonink',
+                category: 'streetwear',
+                categoryLabel: 'Casual Womenswear',
+                location: 'Jakarta',
+                priceRange: 'Rp 180rb - 700rb',
+                rating: 4.7,
+                image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80',
+                description: 'Brand wanita kasual sehari-hari dengan filosofi "casual with a twist" yang nyaman untuk iklim tropis.',
+                popularItem: 'Printed Blouse & Loose Pants',
+                link: '#'
+            },
+            {
+                id: 'danar-hadi-modern',
+                name: 'Batik Danar Hadi',
+                category: 'wastra',
+                categoryLabel: 'Batik & Ethnic Wastra',
+                location: 'Yogyakarta',
+                priceRange: 'Rp 300rb - 4.0jt',
+                rating: 4.8,
+                image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80',
+                description: 'Legenda batik Solo dan Jogja yang menghadirkan lini batik tulis & cap kontemporer bergaya elegan.',
+                popularItem: 'Kemeja Batik Tulis Sutra',
+                link: '#'
+            },
+            {
+                id: 'nah-project',
+                name: 'NAH Project',
+                category: 'footwear',
+                categoryLabel: 'Sepatu & Footwear',
+                location: 'Bandung',
+                priceRange: 'Rp 280rb - 750rb',
+                rating: 4.7,
+                image: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80',
+                description: 'Sneakers lokal yang dikenal mengedepankan riset kenyamanan uppers rajit (knit) yang pernah dikenakan Presiden RI.',
+                popularItem: 'Flexknit v3 Sneakers',
+                link: '#'
+            }
+        ];
+
+        // State Store
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let selectedLocation = 'all';
+        let wishlist = JSON.parse(localStorage.getItem('nusa_wishlist')) || [];
+
+        // DOM Elements
+        const brandsGrid = document.getElementById('brandsGrid');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const locationFilter = document.getElementById('locationFilter');
+        const categoryPills = document.getElementById('categoryPills');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        // Initial Load
+        window.onload = function() {
+            renderBrands();
+            updateWishlistBadge();
+
+            // Mobile Menu Toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Search Event
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase().trim();
+                renderBrands();
+            });
+
+            // Location Filter Event
+            locationFilter.addEventListener('change', (e) => {
+                selectedLocation = e.target.value;
+                renderBrands();
+            });
+
+            // Category Filter Events
+            categoryPills.addEventListener('click', (e) => {
+                const btn = e.target.closest('.category-btn');
+                if(!btn) return;
+
+                document.querySelectorAll('.category-btn').forEach(b => {
+                    b.classList.remove('bg-zinc-900', 'text-white', 'active');
+                    b.classList.add('bg-white', 'border-zinc-200', 'text-zinc-700');
+                });
+
+                btn.classList.remove('bg-white', 'border-zinc-200', 'text-zinc-700');
+                btn.classList.add('bg-zinc-900', 'text-white', 'active');
+
+                currentCategory = btn.dataset.category;
+                renderBrands();
+            });
+        };
+
+        function renderBrands() {
+            const filtered = brandsData.filter(brand => {
+                const matchCategory = (currentCategory === 'all') || (brand.category === currentCategory);
+                const matchLocation = (selectedLocation === 'all') || (brand.location.includes(selectedLocation));
+                const matchSearch = brand.name.toLowerCase().includes(searchQuery) || 
+                                    brand.description.toLowerCase().includes(searchQuery) ||
+                                    brand.categoryLabel.toLowerCase().includes(searchQuery);
+
+                return matchCategory && matchLocation && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                brandsGrid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            brandsGrid.innerHTML = filtered.map(brand => {
+                const isWishlisted = wishlist.includes(brand.id);
+                return `
+                <div class="bg-white rounded-2xl border border-zinc-200/80 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <!-- Image Showcase -->
+                        <div class="relative h-48 overflow-hidden bg-zinc-100">
+                            <img src="${brand.image}" alt="${brand.name}" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                onerror="this.src='https://placehold.co/600x400/27272a/ffffff?text=${encodeURIComponent(brand.name)}'">
+                            
+                            <!-- Badges -->
+                            <div class="absolute top-3 left-3 bg-zinc-900/80 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-full">
+                                <i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> ${brand.location}
+                            </div>
+
+                            <button onclick="toggleWishlist('${brand.id}')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-zinc-700 hover:text-red-500 transition-colors shadow-sm">
+                                <i class="${isWishlisted ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart'} text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5">
+                            <div class="flex items-center justify-between text-[11px] text-zinc-500 mb-1">
+                                <span class="font-medium text-brand-600 uppercase tracking-wider">${brand.categoryLabel}</span>
+                                <span class="flex items-center gap-1 font-semibold text-amber-600">
+                                    <i class="fa-solid fa-star text-xs"></i> ${brand.rating}
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif-title font-bold text-lg text-zinc-900 group-hover:text-brand-500 transition-colors">
+                                ${brand.name}
+                            </h3>
+
+                            <p class="text-zinc-600 text-xs mt-2 line-clamp-2 leading-relaxed">
+                                ${brand.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="px-5 pb-5 pt-2 border-t border-zinc-100 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[10px] text-zinc-400">Kisaran Harga</span>
+                            <span class="text-xs font-bold text-zinc-800">${brand.priceRange}</span>
+                        </div>
+
+                        <button onclick="openBrandModal('${brand.id}')" class="bg-zinc-100 hover:bg-zinc-900 hover:text-white text-zinc-800 text-xs font-semibold px-3.5 py-2 rounded-xl transition-all">
+                            Detail <i class="fa-solid fa-chevron-right text-[10px] ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        // Brand Modal View
+        function openBrandModal(brandId) {
+            const brand = brandsData.find(b => b.id === brandId);
+            if (!brand) return;
+
+            const modalContent = document.getElementById('brandModalContent');
+            const isWishlisted = wishlist.includes(brand.id);
+
+            modalContent.innerHTML = `
+                <div class="relative h-64 sm:h-72 bg-zinc-900">
+                    <img src="${brand.image}" alt="${brand.name}" class="w-full h-full object-cover opacity-80" onerror="this.src='https://placehold.co/800x400/27272a/ffffff?text=${encodeURIComponent(brand.name)}'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <span class="bg-brand-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">${brand.categoryLabel}</span>
+                        <h2 class="font-serif-title text-2xl sm:text-3xl font-bold mt-2">${brand.name}</h2>
+                        <p class="text-xs text-zinc-300 mt-1"><i class="fa-solid fa-location-dot text-brand-500"></i> ${brand.location}, Indonesia</p>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 space-y-6">
+                    <div>
+                        <h4 class="font-semibold text-xs text-zinc-400 uppercase tracking-wider mb-2">Tentang Brand</h4>
+                        <p class="text-zinc-700 text-sm leading-relaxed">${brand.description}</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 bg-zinc-50 p-4 rounded-2xl border border-zinc-200/80">
+                        <div>
+                            <span class="block text-xs text-zinc-400">Produk Unggulan</span>
+                            <span class="font-semibold text-xs text-zinc-800">${brand.popularItem}</span>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-zinc-400">Rentang Harga</span>
+                            <span class="font-semibold text-xs text-zinc-800">${brand.priceRange}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                        <button onclick="toggleWishlist('${brand.id}')" class="w-full sm:w-auto flex-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+                            <i class="${isWishlisted ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart'}"></i>
+                            ${isWishlisted ? 'Hapus dari Wishlist' : 'Simpan ke Wishlist'}
+                        </button>
+                        <a href="https://google.com/search?q=${encodeURIComponent(brand.name + ' brand lokal')}" target="_blank" class="w-full sm:w-auto flex-1 bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+                            Kunjungi Toko <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('brandModal').classList.remove('hidden');
+        }
+
+        function closeBrandModal() {
+            document.getElementById('brandModal').classList.add('hidden');
+        }
+
+        // Wishlist Toggle Logic
+        function toggleWishlist(brandId) {
+            const index = wishlist.indexOf(brandId);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast('Brand dihapus dari wishlist', 'info');
+            } else {
+                wishlist.push(brandId);
+                showToast('Brand ditambahkan ke wishlist! ❤️', 'success');
+            }
+
+            localStorage.setItem('nusa_wishlist', JSON.stringify(wishlist));
+            updateWishlistBadge();
+            renderBrands();
+
+            // Refresh modal if open
+            if(!document.getElementById('brandModal').classList.contains('hidden')) {
+                openBrandModal(brandId);
+            }
+        }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlistBadge');
+            if (wishlist.length > 0) {
+                badge.innerText = wishlist.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function toggleWishlistModal() {
+            const modal = document.getElementById('wishlistModal');
+            const container = document.getElementById('wishlistContainer');
+
+            if (modal.classList.contains('hidden')) {
+                const items = brandsData.filter(b => wishlist.includes(b.id));
+                if (items.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-8 text-zinc-400 text-xs">
+                            <i class="fa-regular fa-heart text-3xl mb-2 block"></i>
+                            Belum ada brand favorit yang disimpan.
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = items.map(b => `
+                        <div class="flex items-center justify-between p-3 bg-zinc-50 rounded-xl border border-zinc-200">
+                            <div class="flex items-center gap-3">
+                                <img src="${b.image}" class="w-12 h-12 rounded-lg object-cover">
+                                <div>
+                                    <h4 class="font-bold text-xs text-zinc-800">${b.name}</h4>
+                                    <span class="text-[10px] text-zinc-500">${b.location}</span>
+                                </div>
+                            </div>
+                            <button onclick="toggleWishlist('${b.id}'); toggleWishlistModal();" class="text-red-500 text-xs hover:bg-red-50 p-2 rounded-lg">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    `).join('');
+                }
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Lookbook Action
+        function showLookbookDetail(title) {
+            showToast(`Lookbook "${title}" siap diinspirasi!`, 'info');
+        }
+
+        // Submit Brand Modal Toggle
+        function openSubmitModal() {
+            document.getElementById('submitModal').classList.remove('hidden');
+        }
+        function closeSubmitModal() {
+            document.getElementById('submitModal').classList.add('hidden');
+        }
+
+        function handleBrandSubmit(e) {
+            e.preventDefault();
+            closeSubmitModal();
+            showToast('Terima kasih! Pendaftaran brand Anda berhasil dikirim.', 'success');
+        }
+
+        function handleNewsletter(e) {
+            e.preventDefault();
+            e.target.reset();
+            showToast('Terima kasih telah berlangganan update NusaStyle!', 'success');
+        }
+
+        // Toast Notification System
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = message;
+            if(type === 'success') {
+                toastIcon.className = 'fa-solid fa-circle-check text-brand-500 text-base';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-info text-amber-500 text-base';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
